@@ -1,9 +1,10 @@
 from flask import Flask, request
 from pymongo import MongoClient
 from app.common.response import responseNormal
+from app.config.main import *
 
 app = Flask(__name__)
-conn = MongoClient('127.0.0.1', 27017)
+conn = MongoClient(Config.dev['database'], Config.dev['databasePort'])
 db = conn.devlint
 
 @app.route('/<tech>')
