@@ -4,7 +4,7 @@ from app.common.response import responseNormal
 from app.config.main import *
 
 app = Flask(__name__)
-conn = MongoClient(Config.dev['database'], Config.dev['databasePort'])
+conn = MongoClient(Config.database, Config.databasePort)
 db = conn.devlint
 
 @app.route('/<tech>')
