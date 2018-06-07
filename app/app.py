@@ -7,10 +7,21 @@ app = Flask(__name__)
 conn = MongoClient(Config.database, Config.databasePort)
 db = conn.devlint
 
-@app.route('/<tech>')
-def index(tech):
-    tech = tech.lower()
-    documentCursor = db[tech].find()
+# API V1 '/api/v1/'
+
+# 查询文档
+@app.route('/api/v1/datas/<sheet>')
+def sheetQuery(sheet):
+    sheet = sheet.lower()
+    documentCursor = db[sheet].find()
+
+    # 如果文档不存在
+    documentCount = documentCursor.count()
+    if documentCount < 1:
+        # 关闭游标
+        documentCursor.close()
+        returnData = responseNormal(200, '数据尚未生成', [])
+        return returnData
 
     documentList = []
     for document in documentCursor:
@@ -19,16 +30,15 @@ def index(tech):
         for keyname in document:
             documentCache[keyname] = document[keyname]
         documentList.append(documentCache)
-
-    # 关闭游标
     documentCursor.close()
 
     # 返回查询信息
     returnData = responseNormal(200, '查询成功', documentList)
     return returnData
 
-@app.route('/upload/document', methods=['POST'])
-def upload():
+# 上传文档
+@app.route('/api/v1/document/upload', methods=['POST'])
+def documentUpload():
     collectionDict = request.form.to_dict()
 
     # collectionName to lowercase
@@ -49,15 +59,20 @@ def upload():
     # 过滤数据
     documentDict = {}
     documentDict['document'] = documentName
-    documentDict['content'] = collectionDict['content']
+
+    try:
+        documentDict['content'] = collectionDict['content']
+    except:
+        documentDict['content'] = ''
+
     db[collectionName].insert(documentDict)
 
     returnData = responseNormal(200, '提交成功')
     return returnData
 
 # 文档【有用】按钮点击接口，每点击一次增加 1
-@app.route('/update/document/use', methods=['POST'])
-def update():
+@app.route('/api/v1/document/like', methods=['POST'])
+def documentLikeNum():
     collectionDict = request.form.to_dict()
 
     collectionName = collectionDict['collection'].lower()
@@ -70,3 +85,24 @@ def update():
 
     returnData = responseNormal(200, '提交成功')
     return returnData
+
+# 读取 MD 文档并返回字符串
+@app.route('/api/v1/document/<sheet>', methods=['GET'])
+def returnDocument(sheet):
+    sheet = sheet.lower()
+
+    # 读取 /static/source/<sheet>.md，返回字符串
+    mdDocument = ''
+    resultQuery = ''
+    try:
+        mdUrlStr = 'app/static/source/' + sheet + '.md'
+        file = open(mdUrlStr, 'r', encoding='UTF-8')
+    except IOError:
+        resultQuery = '文件不存在'
+    else:
+        resultQuery = '查询成功'
+        mdDocument = file.read()
+        file.close()
+    returnData = responseNormal(200, resultQuery, mdDocument)
+    return returnData
+
