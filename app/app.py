@@ -9,7 +9,14 @@ db = conn.devlint
 
 # API V1 '/api/v1/'
 
-# 查询文档
+# 获取所有集合
+@app.route('/api/v1/datas/collections')
+def getCollectionsAll():
+    collectionNames = db.collection_names()
+    returnData = responseNormal(200, '返回数据', collectionNames)
+    return returnData
+
+# 查询指定文档
 @app.route('/api/v1/datas/<sheet>')
 def sheetQuery(sheet):
     sheet = sheet.lower()
@@ -44,6 +51,7 @@ def documentUpload():
     # collectionName to lowercase
     collectionName = collectionDict['collection'].lower()
     documentName = collectionDict['document']
+    documentContent = collectionDict['content']
 
     # 阻止重复提交
     documentCursor = db[collectionName].find({'document': documentName})
@@ -59,15 +67,40 @@ def documentUpload():
     # 过滤数据
     documentDict = {}
     documentDict['document'] = documentName
-
-    try:
-        documentDict['content'] = collectionDict['content']
-    except:
-        documentDict['content'] = ''
+    documentDict['content'] = documentContent
 
     db[collectionName].insert(documentDict)
 
     returnData = responseNormal(200, '提交成功')
+    return returnData
+
+# 更新文档
+@app.route('/api/v1/document/update', methods=['POST'])
+def documentUpdate():
+    collectionDict = request.form.to_dict()
+    collectionName = collectionDict['collection'].lower()
+    documentName = collectionDict['document']
+    documentContent = collectionDict['content']
+
+    documentCursor = db[collectionName].find({'document': documentName})
+    documentCount = documentCursor.count()
+    documentCursor.close()
+
+    # 如果文档不存在则返回
+    returnData = {}
+    if documentCount < 1:
+        returnData = responseNormal(200, '%s 文档不存在' % documentName)
+        return returnData
+
+    documentDict = {}
+    documentDict['document'] = documentName
+    documentDict['content'] = documentContent
+    db[collectionName].update(
+        {'document': documentName},
+        documentDict
+    )
+
+    returnData = responseNormal(200, '%s 文档更新成功' % documentName)
     return returnData
 
 # 文档【有用】按钮点击接口，每点击一次增加 1
@@ -86,7 +119,7 @@ def documentLikeNum():
     returnData = responseNormal(200, '提交成功')
     return returnData
 
-# 读取 MD 文档并返回字符串
+# TODO: [待定接口] 读取 MD 文档并返回字符串
 @app.route('/api/v1/document/<sheet>', methods=['GET'])
 def returnDocument(sheet):
     sheet = sheet.lower()
@@ -96,12 +129,13 @@ def returnDocument(sheet):
     resultQuery = ''
     try:
         mdUrlStr = 'app/static/source/' + sheet + '.md'
-        file = open(mdUrlStr, 'r', encoding='UTF-8')
+        file = open(mdUrlStr, 'r')
     except IOError:
         resultQuery = '文件不存在'
     else:
         resultQuery = '查询成功'
         mdDocument = file.read()
+        # mdDocument = markdown.markdown(mdDocument)
         file.close()
     returnData = responseNormal(200, resultQuery, mdDocument)
     return returnData
