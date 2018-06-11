@@ -2,7 +2,6 @@ from flask import Flask, request
 from pymongo import MongoClient
 from app.common.response import responseNormal
 from app.config.main import *
-import time
 
 app = Flask(__name__)
 conn = MongoClient(Config.database, Config.databasePort)
@@ -35,7 +34,7 @@ def getCollection(collection):
 
 # 查询指定文档
 @app.route('/api/v1/<collection>/<document>')
-def sheetQuery(collection, document):
+def getDocument(collection, document):
     documentCursor = db[collection].find({'document': document})
 
     # 如果文档不存在
