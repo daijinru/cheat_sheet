@@ -1,6 +1,7 @@
 from flask import Flask, request
 from pymongo import MongoClient
 from app.common.response import responseNormal
+from app.common.login import loginToken
 from app.config.main import *
 
 app = Flask(__name__)
