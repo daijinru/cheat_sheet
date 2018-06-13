@@ -33,7 +33,16 @@ def loginTokenVerify():
 @app.route('/api/v1/collections')
 def getCollectionsAll():
     collectionNames = db.collection_names()
-    returnData = responseNormal(200, '返回数据', collectionNames)
+
+    responseObj = {}
+    for collection in collectionNames:
+        responseObj[collection] = []
+        documentCursor = db[collection].find()
+        for document in documentCursor:
+            responseObj[collection].append(document['document'])
+        documentCursor.close()
+
+    returnData = responseNormal(200, '返回数据', responseObj)
     return returnData
 
 # 获取指定集合中的文档名
