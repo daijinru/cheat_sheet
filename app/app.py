@@ -39,7 +39,8 @@ def getCollection(collection):
     documentCursor.close()
 
     # 查询 sequenceValue 在列表中的位置并删除它
-    del documentList[documentList.index('sequenceValue')]
+    if 'sequenceValue' in documentList:
+        del documentList[documentList.index('sequenceValue')]
 
     returnData = responseNormal(200, '查询成功', documentList)
     return returnData
