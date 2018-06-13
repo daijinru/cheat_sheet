@@ -23,7 +23,10 @@ def loginTokenVerify():
         return responseNormal(400, '缺乏参数 %s' % ke)
 
     responseText = loginToken.loginVerify(username, pwd)
-    returnData = responseNormal(200, '操作成功', responseText)
+    responseCode = 200
+    if responseText == '':
+        responseCode = 400
+    returnData = responseNormal(responseCode, '操作成功', responseText)
     return returnData
 
 # 获取所有集合
@@ -60,7 +63,7 @@ def getDocument(collection, document):
     if documentCount < 1:
         # 关闭游标
         documentCursor.close()
-        returnData = responseNormal(404, '文档不存在', [])
+        returnData = responseNormal(400, '文档不存在', [])
         return returnData
 
     documentMap = {}
@@ -153,7 +156,7 @@ def documentUpdate():
     # 如果文档不存在则返回
     returnData = {}
     if documentCount < 1:
-        returnData = responseNormal(404, '你要更新的文档不存在')
+        returnData = responseNormal(400, '你要更新的文档不存在')
         return returnData
 
     documentDict = {}
