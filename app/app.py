@@ -75,12 +75,16 @@ def documentUpload():
     collectionDict = request.form.to_dict()
 
     # collectionName to lowercase
-    collectionName = collectionDict['collection']
-    documentName = collectionDict['document']
-    documentContent = collectionDict['content']
-    vertifyTokenResult = loginToken.verify_toekn(collectionDict['token'])
+    try:
+        collectionName = collectionDict['collection']
+        documentName = collectionDict['document']
+        documentContent = collectionDict['content']
+        vertifyTokenResult = loginToken.verify_toekn(collectionDict['token'])
+    except KeyError as ke:
+        return responseNormal(200, '缺乏参数 %s' % ke)
+
     if vertifyTokenResult == -1:
-        return responseNormal(401, 'token 过期，请重新登录')
+        return responseNormal(401, 'token 错误，请重新登录')
     elif vertifyTokenResult == 1:
         return responseNormal(401, 'token 已过期，请重新登录')
 
@@ -121,12 +125,17 @@ def documentUpload():
 @app.route('/api/v1/document/update', methods=['POST'])
 def documentUpdate():
     collectionDict = request.form.to_dict()
-    collectionName = collectionDict['collection']
-    documentName = collectionDict['document']
-    documentContent = collectionDict['content']
-    documentID = int(collectionDict['id'])
 
-    vertifyTokenResult = loginToken.verify_toekn(collectionDict['token'])
+    try:
+        collectionName = collectionDict['collection']
+        documentName = collectionDict['document']
+        documentContent = collectionDict['content']
+        documentID = int(collectionDict['id'])
+        token = collectionDict['token']
+    except KeyError as ke:
+        return responseNormal(200, '缺乏参数 %s' % ke)
+
+    vertifyTokenResult = loginToken.verify_toekn(token)
     if vertifyTokenResult == -1:
         return responseNormal(401, 'token 错误，请重新登录')
     elif vertifyTokenResult == 1:

@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "de28d1e1-f219-47c7-b00c-05e4a21ac112",
+		"name": "开发者速查表 Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/api/v1/datas/collections",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://sheet.weilaigongzuo.com/api/v1/collections",
+					"protocol": "http",
+					"host": [
+						"sheet",
+						"weilaigongzuo",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"collections"
+					]
+				},
+				"description": "获取所有 collections"
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/<collection>/<document>",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://sheet.weilaigongzuo.com/api/v1/css/grid",
+					"protocol": "http",
+					"host": [
+						"sheet",
+						"weilaigongzuo",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"css",
+						"grid"
+					]
+				},
+				"description": "查询指定的 collection"
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/<collection>",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://sheet.weilaigongzuo.com/api/v1/css",
+					"protocol": "http",
+					"host": [
+						"sheet",
+						"weilaigongzuo",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"css"
+					]
+				},
+				"description": "查询指定集合中的所有文档名称"
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "admin",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://sheet.weilaigongzuo.com/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"sheet",
+						"weilaigongzuo",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				},
+				"description": "登录接口"
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/document/upload",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "collection",
+							"value": "css",
+							"description": "集合名",
+							"type": "text"
+						},
+						{
+							"key": "document",
+							"value": "grid",
+							"description": "文档标题",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "# README.md\n\n## developer\n\n1. daijinru@weilaigongzuo.com\n\n## environment\n\n1. Python 3.6.5\n2. MongoDB shell version v3.6.5\n3. virtualenv 16.0.0",
+							"description": "文档内容\n",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "YWRtaW46MC4wNjAwNTU0NjMwOTg1MzAyNzoxNTI4ODczMzk1LjY1NjU2MDI=",
+							"description": "token",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://sheet.weilaigongzuo.com/api/v1/document/upload",
+					"protocol": "http",
+					"host": [
+						"sheet",
+						"weilaigongzuo",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"document",
+						"upload"
+					]
+				},
+				"description": "document 上传"
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/document/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "collection",
+							"value": "css",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "修改后的内容",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "document",
+							"value": "grid",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "YWRtaW46MC40NDcyMjM4NDY3MjUzNTg0OjE1Mjg4NzIwOTYuMDY5MDE0",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://sheet.weilaigongzuo.com/api/v1/document/update",
+					"protocol": "http",
+					"host": [
+						"sheet",
+						"weilaigongzuo",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"document",
+						"update"
+					]
+				},
+				"description": "更新已存在的文档"
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/document/like",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "collection",
+							"value": "css",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "document",
+							"value": "选择器",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://sheet.weilaigongzuo.com/api/v1/document/like",
+					"protocol": "http",
+					"host": [
+						"sheet",
+						"weilaigongzuo",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"document",
+						"like"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
