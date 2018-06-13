@@ -15,22 +15,25 @@ class LoginToken:
         return token
 
     def verify_toekn(self, token):
-        _token = base64.b64decode(bytes(token, encoding='utf-8'))
-        _token = str(_token, encoding='utf-8')
-        tokenList = _token.split(':')
-        uid = tokenList[0]
-        userToken = self.users[uid][-1]
-        lat = tokenList[-1]
-        if not userToken == token:
+        try:
+            _token = base64.b64decode(bytes(token, encoding='utf-8'))
+            _token = str(_token, encoding='utf-8')
+            tokenList = _token.split(':')
+            uid = tokenList[0]
+            userToken = self.users[uid][-1]
+            lat = tokenList[-1]
+            if not userToken == token:
+                return -1
+            if float(lat) <= time.time():
+                return 1
+            return 0
+        except:
             return -1
-        if float(lat) <= time.time():
-            return 1
-        return 0
 
     def loginVerify(self, uid, pwd):
         if self.users[uid][0] == pwd:
             return self.gen_token(uid)
         else:
-            return -1
+            return '登录信息错误'
 
 loginToken = LoginToken()

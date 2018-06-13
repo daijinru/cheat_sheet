@@ -10,6 +10,17 @@ db = conn.devsheets
 
 # API V1 '/api/v1/'
 
+# 登录接口
+
+@app.route('/api/v1/login', methods=['POST'])
+def loginTokenVerify():
+    collectionDict = request.form.to_dict()
+    username = collectionDict['username']
+    pwd = collectionDict['password']
+    responseText = loginToken.loginVerify(username, pwd)
+    returnData = responseNormal(200, '操作成功', responseText)
+    return returnData
+
 # 获取所有集合
 @app.route('/api/v1/collections')
 def getCollectionsAll():
@@ -66,6 +77,11 @@ def documentUpload():
     collectionName = collectionDict['collection']
     documentName = collectionDict['document']
     documentContent = collectionDict['content']
+    vertifyTokenResult = loginToken.verify_toekn(collectionDict['token'])
+    if vertifyTokenResult == -1:
+        return responseNormal(401, 'token 过期，请重新登录')
+    elif vertifyTokenResult == 1:
+        return responseNormal(401, 'token 已过期，请重新登录')
 
     # 阻止重复提交
     documentCursor = db[collectionName].find({'document': documentName})
@@ -108,6 +124,12 @@ def documentUpdate():
     documentName = collectionDict['document']
     documentContent = collectionDict['content']
     documentID = int(collectionDict['id'])
+
+    vertifyTokenResult = loginToken.verify_toekn(collectionDict['token'])
+    if vertifyTokenResult == -1:
+        return responseNormal(401, 'token 错误，请重新登录')
+    elif vertifyTokenResult == 1:
+        return responseNormal(401, 'token 已过期，请重新登录')
 
     documentCursor = db[collectionName].find({'id': documentID})
     documentCount = documentCursor.count()
@@ -168,4 +190,3 @@ def returnDocument(sheet):
         file.close()
     returnData = responseNormal(200, resultQuery, mdDocument)
     return returnData
-
