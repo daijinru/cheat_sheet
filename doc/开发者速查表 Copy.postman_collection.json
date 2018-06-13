@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "de28d1e1-f219-47c7-b00c-05e4a21ac112",
+		"_postman_id": "651d2431-dda2-4448-9f44-acc2c446fd4c",
 		"name": "开发者速查表 Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -139,7 +139,7 @@
 						},
 						{
 							"key": "document",
-							"value": "grid",
+							"value": "flexbox   ",
 							"description": "文档标题",
 							"type": "text"
 						},
@@ -151,7 +151,7 @@
 						},
 						{
 							"key": "token",
-							"value": "YWRtaW46MC4wNjAwNTU0NjMwOTg1MzAyNzoxNTI4ODczMzk1LjY1NjU2MDI=",
+							"value": "YWRtaW46MC45NTU4OTc2NDU5MzAxOTk1OjE1Mjg4ODA2MjMuMDcyNzM4",
 							"description": "token",
 							"type": "text"
 						}
@@ -210,7 +210,7 @@
 						},
 						{
 							"key": "token",
-							"value": "YWRtaW46MC40NDcyMjM4NDY3MjUzNTg0OjE1Mjg4NzIwOTYuMDY5MDE0",
+							"value": "YWRtaW46MC43OTczODM2MjU2MDMzNDMxOjE1Mjg4NzYzOTkuMTMwODU3",
 							"description": "",
 							"type": "text"
 						}
@@ -232,6 +232,83 @@
 					]
 				},
 				"description": "更新已存在的文档"
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/delete/collection",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "collection",
+							"value": "css",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "YWRtaW46MC44NzAwMDk4NDUzMzk5MTM5OjE1Mjg5MTMwMTYuOTg0NjA0",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://sheet.weilaigongzuo.com/api/v1/delete/collection",
+					"protocol": "http",
+					"host": [
+						"sheet",
+						"weilaigongzuo",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"delete",
+						"collection"
+					]
+				},
+				"description": "删除指定集合"
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/delete/collection/document",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "collection",
+							"value": "css",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://sheet.weilaigongzuo.com/api/v1/delete/collection/document",
+					"protocol": "http",
+					"host": [
+						"sheet",
+						"weilaigongzuo",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"delete",
+						"collection",
+						"document"
+					]
+				},
+				"description": "删除指定文档"
 			},
 			"response": []
 		},

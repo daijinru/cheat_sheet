@@ -102,14 +102,12 @@ def documentUpload():
         collectionName = collectionDict['collection']
         documentName = collectionDict['document'].strip()
         documentContent = collectionDict['content']
-        vertifyTokenResult = loginToken.verify_toekn(collectionDict['token'])
+        token = collectionDict['token']
     except KeyError as ke:
         return responseNormal(400, '缺乏参数 %s' % ke)
 
-    if vertifyTokenResult == -1:
-        return responseNormal(400, 'token 错误，请重新登录')
-    elif vertifyTokenResult == 1:
-        return responseNormal(400, 'token 已过期，请重新登录')
+    if not isTokenValid(token):
+        return responseNormal(400, 'token 失效，请重新登录')
 
     # 阻止重复提交
     documentCursor = db[collectionName].find({'document': documentName})
@@ -159,11 +157,8 @@ def documentUpdate():
     except KeyError as ke:
         return responseNormal(400, '缺乏参数 %s' % ke)
 
-    vertifyTokenResult = loginToken.verify_toekn(token)
-    if vertifyTokenResult == -1:
-        return responseNormal(400, 'token 错误，请重新登录')
-    elif vertifyTokenResult == 1:
-        return responseNormal(400, 'token 已过期，请重新登录')
+    if not isTokenValid(token):
+        return responseNormal(400, 'token 失效，请重新登录')
 
     documentCursor = db[collectionName].find({'id': documentID})
     documentCount = documentCursor.count()
@@ -186,6 +181,45 @@ def documentUpdate():
 
     returnData = responseNormal(200, '%s 文档更新成功' % documentName)
     return returnData
+
+# 删除集合
+@app.route('/api/v1/delete/collection', methods=['POST'])
+def deleteCollection():
+    collectionDict = request.form.to_dict()
+
+    try:
+        collectionName = collectionDict['collection']
+        token = collectionDict['token']
+    except KeyError as ke:
+        return responseNormal(400, '缺乏参数 %s' % ke)
+
+    if not isTokenValid(token):
+        return responseNormal(400, 'token 失效，请重新登录')
+
+    # 如果 collection 内的 document 大于 0 则不可删除
+    if db[collectionName].count() > 1:
+        return responseNormal(400, '该集合内文档数大于 1，因此不可删除')
+
+    db[collection].drop()
+    return responseNormal(200, '删除 %s 集合成功' % collection)
+
+# 删除某集合内的某文档
+@app.route('/api/v1/delete/collection/document', methods=['POST'])
+def deleteDocument():
+    collectionDict = request.form.to_dict()
+
+    try:
+        collectionName = collectionDict['collection']
+        id = int(collectionDict['id'])
+        token = collectionDict['token']
+    except KeyError as ke:
+        return responseNormal(400, '缺乏参数 %s' % ke)
+
+    if not isTokenValid(token):
+        return responseNormal(400, 'token 失效，请重新登录')
+
+    db[collectionName].find_one_and_delete({'id': id})
+    return responseNormal(200, '删除文档成功')
 
 # TODO: 文档【有用】按钮点击接口，每点击一次增加 1
 @app.route('/api/v1/document/like', methods=['POST'])
@@ -224,3 +258,11 @@ def returnDocument(sheet):
         file.close()
     returnData = responseNormal(200, resultQuery, mdDocument)
     return returnData
+
+def isTokenValid(token):
+    verifyTokenResult = loginToken.verify_toekn(token)
+    returnText = ''
+    if verifyTokenResult == -1 or verifyTokenResult == 1:
+        return False
+    else:
+        return True
