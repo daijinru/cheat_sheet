@@ -34,6 +34,6 @@ class LoginToken:
         if self.users[uid][0] == pwd:
             return self.gen_token(uid)
         else:
-            return '登录信息错误'
+            return ''
 
 loginToken = LoginToken()

@@ -15,8 +15,13 @@ db = conn.devsheets
 @app.route('/api/v1/login', methods=['POST'])
 def loginTokenVerify():
     collectionDict = request.form.to_dict()
-    username = collectionDict['username']
-    pwd = collectionDict['password']
+
+    try:
+        username = collectionDict['username']
+        pwd = collectionDict['password']
+    except KeyError as ke:
+        return responseNormal(400, '缺乏参数 %s' % ke)
+
     responseText = loginToken.loginVerify(username, pwd)
     returnData = responseNormal(200, '操作成功', responseText)
     return returnData
@@ -55,7 +60,7 @@ def getDocument(collection, document):
     if documentCount < 1:
         # 关闭游标
         documentCursor.close()
-        returnData = responseNormal(200, '文档不存在', [])
+        returnData = responseNormal(404, '文档不存在', [])
         return returnData
 
     documentMap = {}
@@ -81,12 +86,12 @@ def documentUpload():
         documentContent = collectionDict['content']
         vertifyTokenResult = loginToken.verify_toekn(collectionDict['token'])
     except KeyError as ke:
-        return responseNormal(200, '缺乏参数 %s' % ke)
+        return responseNormal(400, '缺乏参数 %s' % ke)
 
     if vertifyTokenResult == -1:
-        return responseNormal(401, 'token 错误，请重新登录')
+        return responseNormal(400, 'token 错误，请重新登录')
     elif vertifyTokenResult == 1:
-        return responseNormal(401, 'token 已过期，请重新登录')
+        return responseNormal(400, 'token 已过期，请重新登录')
 
     # 阻止重复提交
     documentCursor = db[collectionName].find({'document': documentName})
@@ -133,13 +138,13 @@ def documentUpdate():
         documentID = int(collectionDict['id'])
         token = collectionDict['token']
     except KeyError as ke:
-        return responseNormal(200, '缺乏参数 %s' % ke)
+        return responseNormal(400, '缺乏参数 %s' % ke)
 
     vertifyTokenResult = loginToken.verify_toekn(token)
     if vertifyTokenResult == -1:
-        return responseNormal(401, 'token 错误，请重新登录')
+        return responseNormal(400, 'token 错误，请重新登录')
     elif vertifyTokenResult == 1:
-        return responseNormal(401, 'token 已过期，请重新登录')
+        return responseNormal(400, 'token 已过期，请重新登录')
 
     documentCursor = db[collectionName].find({'id': documentID})
     documentCount = documentCursor.count()
@@ -148,7 +153,7 @@ def documentUpdate():
     # 如果文档不存在则返回
     returnData = {}
     if documentCount < 1:
-        returnData = responseNormal(200, '你要更新的文档不存在')
+        returnData = responseNormal(404, '你要更新的文档不存在')
         return returnData
 
     documentDict = {}
