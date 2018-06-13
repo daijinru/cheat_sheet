@@ -37,11 +37,15 @@ def getCollectionsAll():
     responseList = []
     for collection in collectionNames:
         documentObj = {}
-        documentObj[collection] = {}
+        documentObj['document'] = []
+        documentObj['collection'] = collection
         documentCursor = db[collection].find()
         for document in documentCursor:
             if 'id' in document.keys():
-                documentObj[collection][document['document']] = document['id']
+                documentObj['document'].append({
+                    'title': document['document'],
+                    'id': document['id']
+                })
         responseList.append(documentObj)
         documentCursor.close()
     returnData = responseNormal(200, '返回数据', responseList)
