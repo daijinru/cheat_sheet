@@ -85,7 +85,7 @@ def documentUpload():
     # collectionName to lowercase
     try:
         collectionName = collectionDict['collection']
-        documentName = collectionDict['document']
+        documentName = collectionDict['document'].strip()
         documentContent = collectionDict['content']
         vertifyTokenResult = loginToken.verify_toekn(collectionDict['token'])
     except KeyError as ke:
@@ -126,7 +126,8 @@ def documentUpload():
 
     db[collectionName].insert(documentDict)
 
-    returnData = responseNormal(200, '提交成功')
+    responseText = {'id': _id}
+    returnData = responseNormal(200, '提交成功', responseText)
     return returnData
 
 # 更新文档
@@ -136,7 +137,7 @@ def documentUpdate():
 
     try:
         collectionName = collectionDict['collection']
-        documentName = collectionDict['document']
+        documentName = collectionDict['document'].strip()
         documentContent = collectionDict['content']
         documentID = int(collectionDict['id'])
         token = collectionDict['token']
