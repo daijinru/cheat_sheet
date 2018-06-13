@@ -34,15 +34,17 @@ def loginTokenVerify():
 def getCollectionsAll():
     collectionNames = db.collection_names()
 
-    responseObj = {}
+    responseList = []
     for collection in collectionNames:
-        responseObj[collection] = []
+        documentObj = {}
+        documentObj[collection] = {}
         documentCursor = db[collection].find()
         for document in documentCursor:
-            responseObj[collection].append(document['document'])
+            if 'id' in document.keys():
+                documentObj[collection][document['document']] = document['id']
+        responseList.append(documentObj)
         documentCursor.close()
-
-    returnData = responseNormal(200, '返回数据', responseObj)
+    returnData = responseNormal(200, '返回数据', responseList)
     return returnData
 
 # 获取指定集合中的文档名
