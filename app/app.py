@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from app.common.response import responseNormal
 from app.common.login import loginToken
 from app.config.main import *
+import urllib.parse as UrlParse
 
 app = Flask(__name__)
 conn = MongoClient(Config.database, Config.databasePort)
@@ -43,7 +44,7 @@ def getCollectionsAll():
         for document in documentCursor:
             if 'id' in document.keys():
                 documentObj['document'].append({
-                    'title': document['document'],
+                    'title': UrlParse.unquote(document['document']),
                     'id': document['id']
                 })
         responseList.append(documentObj)
@@ -54,11 +55,12 @@ def getCollectionsAll():
 # 获取指定集合中的文档名
 @app.route('/api/v1/<collection>')
 def getCollection(collection):
+    collection = UrlParse.quote(collection)
     documentCursor = db[collection].find()
 
     documentList = []
     for document in documentCursor:
-        documentList.append(document['document'])
+        documentList.append(UrlParse.unquote(document['document']))
     documentCursor.close()
 
     # 查询 sequenceValue 在列表中的位置并删除它
@@ -71,6 +73,8 @@ def getCollection(collection):
 # 查询指定文档
 @app.route('/api/v1/<collection>/<document>')
 def getDocument(collection, document):
+    collection = UrlParse.quote(collection)
+    document = UrlParse.quote(UrlParse.unquote(document))
     documentCursor = db[collection].find({'document': document})
 
     # 如果文档不存在
@@ -85,6 +89,8 @@ def getDocument(collection, document):
     for document in documentCursor:
         del document['_id']
         for key in document:
+            if key == 'document':
+                document[key] = UrlParse.unquote(document[key])
             documentMap[key] = document[key]
     documentCursor.close()
 
@@ -98,8 +104,8 @@ def documentUpload():
     collectionDict = request.form.to_dict()
 
     try:
-        collectionName = collectionDict['collection']
-        documentName = collectionDict['document'].strip()
+        collectionName = UrlParse.quote(collectionDict['collection'])
+        documentName = UrlParse.quote(collectionDict['document'].strip())
         documentContent = collectionDict['content']
         token = collectionDict['token']
     except KeyError as ke:
@@ -148,8 +154,8 @@ def documentUpdate():
     collectionDict = request.form.to_dict()
 
     try:
-        collectionName = collectionDict['collection']
-        documentName = collectionDict['document'].strip()
+        collectionName = UrlParse.quote(collectionDict['collection'])
+        documentName = UrlParse.quote(collectionDict['document'].strip())
         documentContent = collectionDict['content']
         documentID = int(collectionDict['id'])
         token = collectionDict['token']
@@ -186,8 +192,8 @@ def renameTheCollection():
     collectionDict = request.form.to_dict()
 
     try:
-        collectionName = collectionDict['collection']
-        rename = collectionDict['rename']
+        collectionName = UrlParse.quote(collectionDict['collection'])
+        rename = UrlParse.quote(collectionDict['rename'])
         token = collectionDict['token']
     except KeyError as ke:
         return responseNormal(400, '缺乏参数 %s' % ke)
@@ -201,7 +207,7 @@ def deleteCollection():
     collectionDict = request.form.to_dict()
 
     try:
-        collectionName = collectionDict['collection']
+        collectionName = UrlParse.quote(collectionDict['collection'])
         token = collectionDict['token']
     except KeyError as ke:
         return responseNormal(400, '缺乏参数 %s' % ke)
@@ -222,7 +228,7 @@ def deleteDocument():
     collectionDict = request.form.to_dict()
 
     try:
-        collectionName = collectionDict['collection']
+        collectionName = UrlParse.quote(collectionDict['collection'])
         id = int(collectionDict['id'])
         token = collectionDict['token']
     except KeyError as ke:
