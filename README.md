@@ -45,3 +45,11 @@ $ . venv/bin/activate
 ```
 (venv) $ python3 run.py
 ```
+
+## Dictionaries
+
+| Name | Desc |
+| :--: | :--: |
+| collection | Mongo 中的集合，对应技术栈，例如 Javascript,Css |
+| document | 集合中的文档，例如 Css 中的 Flexbox,Grid |
+| token | 身份认证 |

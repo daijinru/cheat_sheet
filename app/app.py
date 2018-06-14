@@ -97,7 +97,6 @@ def getDocument(collection, document):
 def documentUpload():
     collectionDict = request.form.to_dict()
 
-    # collectionName to lowercase
     try:
         collectionName = collectionDict['collection']
         documentName = collectionDict['document'].strip()
@@ -182,6 +181,20 @@ def documentUpdate():
     returnData = responseNormal(200, '%s 文档更新成功' % documentName)
     return returnData
 
+@app.route('/api/v1/collection/rename', methods=['POST'])
+def renameTheCollection():
+    collectionDict = request.form.to_dict()
+
+    try:
+        collectionName = collectionDict['collection']
+        rename = collectionDict['rename']
+        token = collectionDict['token']
+    except KeyError as ke:
+        return responseNormal(400, '缺乏参数 %s' % ke)
+
+    db[collectionName].rename(rename)
+    return responseNormal(200, '操作成功')
+
 # 删除集合
 @app.route('/api/v1/delete/collection', methods=['POST'])
 def deleteCollection():
@@ -218,8 +231,11 @@ def deleteDocument():
     if not isTokenValid(token):
         return responseNormal(400, 'token 失效，请重新登录')
 
-    db[collectionName].find_one_and_delete({'id': id})
-    return responseNormal(200, '删除文档成功')
+    result = db[collectionName].delete_one({'id': id})
+    if result.deleted_count > 0:
+        return responseNormal(200, '删除文档成功')
+    else:
+        return responseNormal(400, '删除失败，可能是该文档不存在')
 
 # TODO: 文档【有用】按钮点击接口，每点击一次增加 1
 @app.route('/api/v1/document/like', methods=['POST'])
