@@ -4,7 +4,7 @@ import time
 
 class LoginToken:
     users = {
-        'admin': ['123456']
+        'admin': ['12345678']
     }
 
     def gen_token(self, uid):
