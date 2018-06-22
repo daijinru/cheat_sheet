@@ -30,6 +30,7 @@ for fileName in fileList:
 
             collectionName = UrlParse.quote(documentCategory.group().strip())
             documentName = UrlParse.quote(documentTitle.group().strip())
+            documentName = re.sub('\..+', '', documentName)
             documentContent = fileContentClear
 
             documentDict = {}

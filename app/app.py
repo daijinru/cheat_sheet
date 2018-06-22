@@ -74,9 +74,8 @@ def getCollection(collection):
 @app.route('/api/v1/<collection>/<document>')
 def getDocument(collection, document):
     collection = UrlParse.quote(collection)
-    document = UrlParse.quote(UrlParse.unquote(document))
+    document = UrlParse.quote(document)
     documentCursor = db[collection].find({'document': document})
-
     # 如果文档不存在
     documentCount = documentCursor.count()
     if documentCount < 1:
