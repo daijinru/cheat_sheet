@@ -16,6 +16,13 @@
 
 ## Operation
 
+如果是在新环境，请先执行脚本导入数据
+
+```
+$ cd scripts
+$ python3 resource_build.py
+```
+
 项目根目录创建虚拟环境文件夹
 
 ```
