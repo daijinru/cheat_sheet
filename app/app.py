@@ -39,13 +39,12 @@ def getCollectionsAll():
     for collection in collectionNames:
         documentObj = {}
         documentObj['document'] = []
-        documentObj['collection'] = collection
+        documentObj['collection'] = UrlParse.unquote(collection)
         documentCursor = db[collection].find()
         for document in documentCursor:
             if 'id' in document.keys():
-                documentName = UrlParse.unquote(document['document'])
                 documentObj['document'].append({
-                    'title': documentName,
+                    'title': UrlParse.unquote(document['document']),
                     'id': document['id']
                 })
         responseList.append(documentObj)
