@@ -6,8 +6,8 @@ from app.config.main import *
 import urllib.parse as UrlParse
 
 app = Flask(__name__)
-conn = MongoClient(Config.database, Config.databasePort)
-db = conn.devsheets
+ConnectClient = MongoClient(Config.database, Config.databasePort)
+db = ConnectClient.devsheets
 
 # API V1 '/api/v1/'
 
@@ -34,7 +34,6 @@ def loginTokenVerify():
 @app.route('/api/v1/collections')
 def getCollectionsAll():
     collectionNames = db.collection_names()
-
     responseList = []
     for collection in collectionNames:
         documentObj = {}

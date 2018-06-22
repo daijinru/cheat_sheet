@@ -1,6 +1,7 @@
 import os
 import re
 import sys
+import urllib.parse as UrlParse
 from pymongo import MongoClient
 
 sys.path.append('../')
@@ -8,8 +9,6 @@ from app.config.main import *
 
 ConnectClient = MongoClient(Config.database, Config.databasePort)
 db = ConnectClient.devsheets
-
-# db['test'].insert({'test': 1})
 
 # collectionName 集合
 collectionDict = {}
@@ -29,8 +28,8 @@ for fileName in fileList:
             fileContentClear = re.sub('{.+(}\n)', '', fileContent)
             fileContentClear = fileContentClear[fileContentClear.find('\n---\n') + 4:].lstrip()
 
-            collectionName = documentCategory.group().strip()
-            documentName = documentTitle.group().strip()
+            collectionName = UrlParse.quote(documentCategory.group().strip())
+            documentName = UrlParse.quote(documentTitle.group().strip())
             documentContent = fileContentClear
 
             documentDict = {}
