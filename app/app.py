@@ -35,6 +35,7 @@ def loginTokenVerify():
 def getCollectionsAll():
     collectionNames = db.collection_names()
     responseList = []
+    collectionNames.remove('Hidden')
     for collection in collectionNames:
         documentObj = {}
         documentObj['document'] = []
@@ -42,8 +43,9 @@ def getCollectionsAll():
         documentCursor = db[collection].find()
         for document in documentCursor:
             if 'id' in document.keys():
+                documentName = UrlParse.unquote(document['document'])
                 documentObj['document'].append({
-                    'title': UrlParse.unquote(document['document']),
+                    'title': documentName,
                     'id': document['id']
                 })
         responseList.append(documentObj)
