@@ -218,8 +218,8 @@ def deleteCollection():
     if db[collectionName].count() > 1:
         return responseNormal(400, '该集合内文档数大于 1，因此不可删除')
 
-    db[collection].drop()
-    return responseNormal(200, '删除 %s 集合成功' % collection)
+    db[collectionName].drop()
+    return responseNormal(200, '删除 %s 集合成功' % collectionName)
 
 # 删除某集合内的某文档
 @app.route('/api/v1/delete/collection/document', methods=['POST'])

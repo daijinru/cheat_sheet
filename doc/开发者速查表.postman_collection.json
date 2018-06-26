@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "651d2431-dda2-4448-9f44-acc2c446fd4c",
-		"name": "开发者速查表 Copy",
+		"_postman_id": "6e2463a8-5f1b-4381-a8e0-352a15801b53",
+		"name": "开发者速查表",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -12,13 +12,15 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://sheet.weilaigongzuo.com/api/v1/collections",
+					"raw": "http://127.0.0.1:5000/api/v1/collections",
 					"protocol": "http",
 					"host": [
-						"sheet",
-						"weilaigongzuo",
-						"com"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
+					"port": "5000",
 					"path": [
 						"api",
 						"v1",
@@ -36,17 +38,19 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://sheet.weilaigongzuo.com/api/v1/css/grid",
+					"raw": "http://127.0.0.1:5000/api/v1/JavascriptTest/grid",
 					"protocol": "http",
 					"host": [
-						"sheet",
-						"weilaigongzuo",
-						"com"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
+					"port": "5000",
 					"path": [
 						"api",
 						"v1",
-						"css",
+						"JavascriptTest",
 						"grid"
 					]
 				},
@@ -61,17 +65,19 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://sheet.weilaigongzuo.com/api/v1/css",
+					"raw": "http://127.0.0.1:5000/api/v1/JavascriptTest",
 					"protocol": "http",
 					"host": [
-						"sheet",
-						"weilaigongzuo",
-						"com"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
+					"port": "5000",
 					"path": [
 						"api",
 						"v1",
-						"css"
+						"JavascriptTest"
 					]
 				},
 				"description": "查询指定集合中的所有文档名称"
@@ -94,20 +100,22 @@
 						},
 						{
 							"key": "password",
-							"value": "123456",
+							"value": "12345678",
 							"description": "",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://sheet.weilaigongzuo.com/api/v1/login",
+					"raw": "http://127.0.0.1:5000/api/v1/login",
 					"protocol": "http",
 					"host": [
-						"sheet",
-						"weilaigongzuo",
-						"com"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
+					"port": "5000",
 					"path": [
 						"api",
 						"v1",
@@ -133,13 +141,13 @@
 					"formdata": [
 						{
 							"key": "collection",
-							"value": "css",
+							"value": "JavascriptTest",
 							"description": "集合名",
 							"type": "text"
 						},
 						{
 							"key": "document",
-							"value": "flexbox   ",
+							"value": "hello world",
 							"description": "文档标题",
 							"type": "text"
 						},
@@ -151,20 +159,22 @@
 						},
 						{
 							"key": "token",
-							"value": "YWRtaW46MC45NTU4OTc2NDU5MzAxOTk1OjE1Mjg4ODA2MjMuMDcyNzM4",
+							"value": "YWRtaW46MC4xOTcxMDA1MjA5MzUwMDc3NDoxNTI5OTg4NzQwLjY1NTU0NjI=",
 							"description": "token",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://sheet.weilaigongzuo.com/api/v1/document/upload",
+					"raw": "http://127.0.0.1:5000/api/v1/document/upload",
 					"protocol": "http",
 					"host": [
-						"sheet",
-						"weilaigongzuo",
-						"com"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
+					"port": "5000",
 					"path": [
 						"api",
 						"v1",
@@ -186,7 +196,7 @@
 					"formdata": [
 						{
 							"key": "collection",
-							"value": "css",
+							"value": "JavascriptTest",
 							"description": "",
 							"type": "text"
 						},
@@ -210,20 +220,22 @@
 						},
 						{
 							"key": "token",
-							"value": "YWRtaW46MC43OTczODM2MjU2MDMzNDMxOjE1Mjg4NzYzOTkuMTMwODU3",
+							"value": "YWRtaW46MC4xOTcxMDA1MjA5MzUwMDc3NDoxNTI5OTg4NzQwLjY1NTU0NjI=",
 							"description": "",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://sheet.weilaigongzuo.com/api/v1/document/update",
+					"raw": "http://127.0.0.1:5000/api/v1/document/update",
 					"protocol": "http",
 					"host": [
-						"sheet",
-						"weilaigongzuo",
-						"com"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
+					"port": "5000",
 					"path": [
 						"api",
 						"v1",
@@ -245,26 +257,28 @@
 					"formdata": [
 						{
 							"key": "collection",
-							"value": "css",
+							"value": "JavascriptTest",
 							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "token",
-							"value": "YWRtaW46MC44NzAwMDk4NDUzMzk5MTM5OjE1Mjg5MTMwMTYuOTg0NjA0",
+							"value": "YWRtaW46MC43OTUxNjQ2MTQ1Mzk4NzcyOjE1Mjk5ODkxNTIuMTgxMTA5",
 							"description": "",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://sheet.weilaigongzuo.com/api/v1/delete/collection",
+					"raw": "http://127.0.0.1:5000/api/v1/delete/collection",
 					"protocol": "http",
 					"host": [
-						"sheet",
-						"weilaigongzuo",
-						"com"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
+					"port": "5000",
 					"path": [
 						"api",
 						"v1",
@@ -286,7 +300,7 @@
 					"formdata": [
 						{
 							"key": "collection",
-							"value": "css",
+							"value": "JavascriptTest",
 							"description": "",
 							"type": "text"
 						},
@@ -298,20 +312,22 @@
 						},
 						{
 							"key": "token",
-							"value": "YWRtaW46MC43MDg5MzA3NDYwNDU3NDQ6MTUyODkxMzY0Mi43OTgyNjcx",
+							"value": "YWRtaW46MC4xOTcxMDA1MjA5MzUwMDc3NDoxNTI5OTg4NzQwLjY1NTU0NjI=",
 							"description": "",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://sheet.weilaigongzuo.com/api/v1/delete/collection/document",
+					"raw": "http://127.0.0.1:5000/api/v1/delete/collection/document",
 					"protocol": "http",
 					"host": [
-						"sheet",
-						"weilaigongzuo",
-						"com"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
+					"port": "5000",
 					"path": [
 						"api",
 						"v1",
@@ -321,46 +337,6 @@
 					]
 				},
 				"description": "删除指定文档"
-			},
-			"response": []
-		},
-		{
-			"name": "/api/v1/document/like",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "collection",
-							"value": "css",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "document",
-							"value": "选择器",
-							"description": "",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://sheet.weilaigongzuo.com/api/v1/document/like",
-					"protocol": "http",
-					"host": [
-						"sheet",
-						"weilaigongzuo",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"document",
-						"like"
-					]
-				}
 			},
 			"response": []
 		}
