@@ -22,13 +22,18 @@ for fileName in fileList:
         # 如果文档同时具备 title 和 category 字段则执行以下操作
         documentTitle = re.search('(?<=title:).+(?=\n)', fileContent)
         documentCategory = re.search('(?<=category:).+(?=\n)', fileContent)
-        if documentTitle is not None and documentCategory is not None:
+        if documentTitle is not None:
 
             # 处理掉顶部文档信息和花括号内的信息
             fileContentClear = re.sub('{.+(}\n)', '', fileContent)
             fileContentClear = fileContentClear[fileContentClear.find('\n---\n') + 4:].lstrip()
 
-            collectionName = UrlParse.quote(documentCategory.group().strip())
+            # 如果 documentCategory 为空，则归类为 Others
+            if documentCategory is not None:
+                collectionName = UrlParse.quote(documentCategory.group().strip())
+            else:
+                collectionName = 'Others'
+
             documentName = UrlParse.quote(documentTitle.group().strip())
             documentName = re.sub('\..+', '', documentName)
             documentContent = fileContentClear

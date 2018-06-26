@@ -5,6 +5,7 @@ layout: 2017/sheet
 weight: -3
 updated: 2017-09-08
 prism_languages: [json, bash]
+tags: [Featurable]
 ---
 
 ### npm equivalents
@@ -17,6 +18,25 @@ prism_languages: [json, bash]
 | `npm install -g gulp` | `yarn global add gulp` |
 | `./node_modules/.bin/gulp` | `yarn run gulp` |
 {: .-left-align.-headers}
+
+### yarn install
+
+```
+--no-lockfile
+--pure-lockfile
+--frozen-lockfile
+--silent
+--offline
+--update-checksums
+--check-files
+--flat
+--force
+--ignore-scripts
+--modules-folder <path>
+--production[=true|false]
+```
+
+These options are available for `yarn install`.
 
 ### yarn add
 

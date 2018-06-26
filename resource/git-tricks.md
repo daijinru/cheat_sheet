@@ -27,6 +27,15 @@ category: Git
 
     # delete remote branch
       git push origin :$branchname
+      
+## Collaboration
+
+    # Rebase your changes on top of the remote master
+      git pull --rebase upstream master
+      
+    # Squash multiple commits into one for a cleaner git log
+    # (on the following screen change the word pick to either 'f' or 's')
+      git rebase -i $commit_ref
 
 Submodules
 ----------
@@ -84,6 +93,9 @@ Misc
 
     # show single commit info
       git log -1 f5a960b5
+
+    # Go back up to root directory
+      cd "$(git rev-parse --show-top-level)"
 
 ## Short log
 

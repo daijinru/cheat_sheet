@@ -4,7 +4,7 @@ category: Devops
 layout: 2017/sheet
 prism_languages: [yaml]
 weight: -1
-updated: 2017-09-20
+updated: 2018-03-17
 ---
 
 ### Basic example
@@ -16,6 +16,9 @@ version: '2'
 services:
   web:
     build: .
+    # build from Dockerfile
+    context: ./Path
+    dockerfile: Dockerfile
     ports:
      - "5000:5000"
     volumes:

@@ -7,7 +7,7 @@ prism_languages: [css]
 weight: -3
 ---
 
-### 简单示例
+### Simple example
 
 ```css
 .container {
@@ -21,7 +21,7 @@ weight: -3
 }
 ```
 
-### 容器
+### Container
 
 ```css
 .container {
@@ -63,7 +63,7 @@ weight: -3
 ```
 {: .-setup}
 
-### 子项目
+### Child
 
 ```css
 .container > div {
@@ -97,7 +97,7 @@ weight: -3
 
 ## Tricks
 
-### 垂直居中
+### Vertical center
 
 ```css
 .container {
@@ -111,7 +111,7 @@ weight: -3
 }
 ```
 
-### 垂直居中（2）
+### Vertical center (2)
 
 ```css
 .container {
@@ -133,7 +133,7 @@ weight: -3
 }
 ```
 
-### 移动端布局
+### Mobile layout
 
 
 ```css
@@ -169,7 +169,7 @@ A fixed-height top bar and a dynamic-height content area.
 This creates columns that have different widths, but size accordingly according
 to the circumstances.
 
-### 垂直
+### Vertical
 
 
 ```css
@@ -178,7 +178,7 @@ to the circumstances.
 }
 ```
 
-垂直居中所有项目
+Vertically-center all items.
 
 ### Left and right
 
@@ -187,7 +187,7 @@ to the circumstances.
 .menu > .right { align-self: flex-end; }
 ```
 
-## 参考
+## References
 {: .-one-column}
 
  * [MDN: Using CSS flexbox](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes)

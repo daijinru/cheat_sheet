@@ -1,30 +1,35 @@
 ---
 title: Docker CLI
 category: Devops
-layout: default-ad
+layout: 2017/sheet
 ---
 
-管理镜像
+Manage images
 -------------
 
-从 Dockerfile 创建一个 `镜像`:
+### `docker build`
 
 ```yml
 docker build [options] .
   -t "app/container_name"    # name
 ```
 
-在`镜像`中运行一条命令:
+Create an `image` from a Dockerfile.
+
+
+### `docker run`
 
 ```yml
 docker run [options] IMAGE
   # see `docker create` for options
 ```
 
-管理容器
+Run a command in an `image`.
+
+Manage containers
 -----------------
 
-从一个`镜像`创建一个`容器`:
+### `docker create`
 
 ```yml
 docker create [options] IMAGE
@@ -40,13 +45,17 @@ docker create [options] IMAGE
   -e, --env NAME=hello       # env vars
 ```
 
+#### Example
+
 ```
 $ docker create --name app_redis_1 \
   --expose 6379 \
   redis:3.0.2
 ```
 
-在一个`容器`中运行:
+Create a `container` from an `image`.
+
+### `docker exec`
 
 ```yml
 docker exec [options] CONTAINER COMMAND
@@ -55,12 +64,17 @@ docker exec [options] CONTAINER COMMAND
   -t, --tty           # interactive
 ```
 
+#### Example
+
 ```
 $ docker exec app_web_1 tail logs/development.log
 $ docker exec -t -i app_web_1 rails c
 ```
 
-启动/停止一个`容器`:
+Run commands in a `container`.
+
+
+### `docker start`
 
 ```yml
 docker start [options] CONTAINER
@@ -70,7 +84,10 @@ docker start [options] CONTAINER
 docker stop [options] CONTAINER
 ```
 
-管理`容器`:
+Start/stop a `container`.
+
+
+### `docker ps`
 
 ```
 $ docker ps
@@ -78,27 +95,35 @@ $ docker ps -a
 $ docker kill $ID
 ```
 
-管理中
---------
+Manage `container`s using ps/kill.
 
-管理`镜像`:
+Images
+------
+
+### `docker images`
 
 ```sh
 $ docker images
   REPOSITORY   TAG        ID
   ubuntu       12.10      b750fe78269d
   me/myapp     latest     7b2431a8d968
+```
 
+```sh
 $ docker images -a   # also show intermediate
 ```
 
-删除`镜像`:
+Manages `image`s.
+
+### `docker rmi`
 
 ```yml
 docker rmi b750fe78269d
 ```
 
-资源
----------
+Deletes `image`s.
 
- * http://www.docker.io/gettingstarted/
+Also see
+--------
+
+ * [Getting Started](http://www.docker.io/gettingstarted/) _(docker.io)_

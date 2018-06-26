@@ -7,7 +7,7 @@ intro: |
   Here's a 4-line snippet on how to get beautiful, antialiased text with CSS.
 ---
 
-### 字体平滑
+### Antialias
 {: .-prime}
 
 ```css
@@ -17,12 +17,12 @@ intro: |
 }
 ```
 
-### 支持
+### Support
 
  * Firefox 25+ on OSX
  * Webkits (Chrome, Safari, etc)
 
-## 参考
+## References
 {: .-one-column}
 
  * [maxvoltar.com](http://maxvoltar.com/archive/-webkit-font-smoothing)

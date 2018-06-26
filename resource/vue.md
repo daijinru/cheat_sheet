@@ -5,7 +5,7 @@ category: JavaScript libraries
 
 {% raw %}
 
-### 列表
+### Lists
 
 ```html
 <li v-for="todo in todos">
@@ -14,13 +14,13 @@ category: JavaScript libraries
 </li>
 ```
 
-### 事件
+### Events
 
 ```html
 <button v-on:click='submit'>Go</button>
 ```
 
-### 组件
+### Components
 
 ```js
 new Vue({
@@ -28,7 +28,7 @@ new Vue({
 })
 ```
 
-## API接口
+## API
 
 ```js
 Vue.extend({ ... })        // creating components
@@ -81,8 +81,8 @@ new Vue({
 })
 ```
 
-## Vue模板
-参考 [vueify](https://www.npmjs.com/package/vueify)
+## Vue templates
+Via [vueify](https://www.npmjs.com/package/vueify)
 
 ```js
 // app.vue
@@ -101,7 +101,7 @@ new Vue({
 </script> 
 ```
 
-以及
+Also
 
 ```html
 <template lang='jade'>

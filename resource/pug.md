@@ -5,12 +5,13 @@ layout: 2017/sheet
 prism_languages: [jade]
 updated: 2017-08-31
 weight: -3
+tags: [Featurable]
 ---
 
 ## Pug
 {: .-three-column}
 
-### 基础文档
+### Basic document
 {: .-prime}
 
 ```jade
@@ -23,7 +24,7 @@ html(lang='en')
   - javascript()
 ```
 
-### 元素
+### Elements
 
 ```jade
 div
@@ -49,7 +50,7 @@ div.class1.class2
 h1.header
 ```
 
-### 属性
+### Attributes
 
 ```jade
 input(type='text' name='q' autofocus)
@@ -62,7 +63,7 @@ body(class=authenticated ? 'authed' : 'anon')
 
 See: [Attributes](https://pugjs.org/language/attributes.html)
 
-### 注释
+### Comments
 
 ```jade
 // This comment will appear in the HTML
@@ -80,7 +81,7 @@ See: [Attributes](https://pugjs.org/language/attributes.html)
 
 See: [Comments](https://pugjs.org/language/attributes.html)
 
-### 迭代
+### Iteration
 
 ```jade
 ul
@@ -88,7 +89,7 @@ ul
     li= user
 ```
 
-### 布局
+### Layouts
 
 ```jade
 //- page.pug
@@ -138,7 +139,7 @@ script.
 ```
 {: data-line="1"}
 
-### 条件判断
+### Conditionals
 
 ```jade
 if authenticated

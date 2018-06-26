@@ -33,8 +33,8 @@ Getting started
 
 ### Navigating
 
-| `h` `j` `k` `l` | Arrow keys                         |
-| `^u` _/_ `^d`   | Page up/page down                  |
+| `h` `j` `k` `l`     | Arrow keys                         |
+| `<C-U>` _/_ `<C-D>` | Page up/page down                  |
 {: .-shortcuts}
 
 #### Words
@@ -45,18 +45,33 @@ Getting started
 
 #### Line
 
-| `0` _(zero)_    | Start of line                      |
-| `^`             | Start of line _(after whitespace)_ |
-| `$`             | End of line                        |
+| Shortcut     | Description                        |
+| ---          | ---                                |
+| `0` _(zero)_ | Start of line                      |
+| `^`          | Start of line _(after whitespace)_ |
+| `$`          | End of line                        |
 {: .-shortcuts}
 
 #### Document
 
-| `gg`            | First line                         |
-| `G`             | Last line                          |
-| `:n`            | Go to line `n`                     |
-| `nG`            | Go to line `n`                     |
+| Shortcut | Description    |
+| ---      | ---            |
+| `gg`     | First line     |
+| `G`      | Last line      |
+| `:n`     | Go to line `n` |
+| `nG`     | Go to line `n` |
 {: .-shortcuts}
+
+#### Window
+
+| Shortcut | Description              |
+| ---      | ---                      |
+| `zz`     | Center this line         |
+| `H`      | Move to top of screen    |
+| `M`      | Move to middle of screen |
+| `L`      | Move to bottom of screen |
+{: .-shortcuts}
+
 
 ### Editing
 
@@ -79,8 +94,8 @@ Getting started
 
 | Shortcut | Description |
 | --- | --- |
-| `Esc` _/_ `^[` | Exit insert mode |
-| `^c` | Exit insert mode, and abort current command |
+| `Esc` _/_ `<C-[>` | Exit insert mode |
+| `<C-C>` | Exit insert mode, and abort current command |
 {: .-shortcuts}
 
 ### Clipboard
@@ -100,7 +115,7 @@ Getting started
 
 | `v`         | Enter visual mode       |
 | `V`         | Enter visual line mode  |
-| `^v`        | Enter visual block mode |
+| `<C-V>`        | Enter visual block mode |
 {: .-shortcuts}
 
 #### In visual mode
@@ -247,16 +262,16 @@ Uppercase ones are recursive (eg, `zO` is open recursively).
 
 | Shortcut | Description                  |
 | ---      | ---                          |
-| `^O`     | Go back to previous location |
-| `^I`     | Go forward                   |
+| `<C-O>`     | Go back to previous location |
+| `<C-I>`     | Go forward                   |
 | ---      | ---                          |
 | `gf`     | go to file in cursor         |
 {: .-shortcuts}
 
 ### Counters
 
-| `^A` | increment number |
-| `^X` | decrement |
+| `<C-A>` | increment number |
+| `<C-X>` | decrement |
 {: .-shortcuts}
 
 ### Windows
@@ -269,10 +284,10 @@ Uppercase ones are recursive (eg, `zO` is open recursively).
 | ---                   | ---                                             |
 | `:tag Classname`      | Jump to first definition of Classname           |
 | ---                   | ---                                             |
-| `^]`                  | Jump to definition                              |
+| `<C-]>`               | Jump to definition                              |
 | `g]`                  | See all definitions                             |
-| `^t`                  | Go back to last tag                             |
-| `^o ^i`               | Back/forward                                    |
+| `<C-T>`               | Go back to last tag                             |
+| `<C-O> <C-I>`         | Back/forward                                    |
 | ---                   | ---                                             |
 | `:tselect Classname`  | Find definitions of Classname                   |
 | `:tjump Classname`    | Find definitions of Classname (auto-select 1st) |
@@ -290,18 +305,19 @@ Uppercase ones are recursive (eg, `zO` is open recursively).
 | `guu`    | lowercase current line (also `gugu`) |
 {: .-shortcuts}
 
-Do these in visual mode.
+Do these in visual or normal mode.
 
 ### Marks
 
-| Shortcut        | Description                            |
-| ---             | ---                                    |
-| <code>`^</code> | Last position of cursor in insert mode |
-| <code>`.</code> | Last change                            |
-| <code>``</code> | Last jump                              |
-| ---             | ---                                    |
-| `ma`            | Mark this cursor position as `a`       |
-| `'a`            | Jump to cursor position `a`            |
+| Shortcut        | Description                                        |
+| ---             | ---                                                |
+| <code>`^</code> | Last position of cursor in insert mode             |
+| <code>`.</code> | Last change                                        |
+| <code>``</code> | Last jump                                          |
+| ---             | ---                                                |
+| `ma`            | Mark this cursor position as `a`                   |
+| <code>`a</code> | Jump to the cursor position `a`                    |
+| `'a`            | Jump to the beginning of the line with position `a`|
 {: .-shortcuts}
 
 ### Misc
@@ -310,16 +326,14 @@ Do these in visual mode.
 | ---      | ---                                       |
 | `.`      | repeat last command                       |
 | `]p`     | paste under the current indentation level |
-| ---      | ---                                       |
-| `zz`     | Center this line                          |
 {: .-shortcuts}
 
 ### Command line
 
 | Shortcut     | Description                               |
 | ---          | ---                                       |
-| `<C-r><C-w>` | insert current word into the command line |
-| `<C-r>"`     | paste from " register                     |
+| `<C-R><C-W>` | insert current word into the command line |
+| `<C-R>"`     | paste from " register                     |
 {: .-shortcuts}
 
 ### Text alignment
@@ -332,7 +346,7 @@ See `:help formatting`
 
 ### Calculator
 
-    <C-r>=128/2
+    <C-R>=128/2
 
 Do this in insert mode.
 

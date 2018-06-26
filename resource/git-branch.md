@@ -8,49 +8,49 @@ updated: 2017-09-20
 ## Working with branches
 {: .-three-column}
 
-### 创建
+### Creating
 
 ```bash
 git checkout -b $branchname
 git push origin $branchname --set-upstream
 ```
 
-本地创建一个新的分支然后提交到远端.
+Creates a new branch locally then pushes it.
 
-### 获取远端分支
+### Getting from remote
 
 ```bash
 git fetch origin
 git checkout --track origin/$branchname
 ```
 
-获取一个远端分支.
+Gets a branch in a remote.
 
-### 删除本地的远程跟踪分支
+### Delete local remote-tracking branches
 
 ```bash
 git remote prune origin
 ```
 
-删除本地副本中的origin / *分支。不影响远端。
+Deletes `origin/*` branches in your local copy. Doesn't affect the remote.
 
-### 列出已经合并的分支。
+### List merged branches
 
 ```bash
 git branch -a --merged
 ```
 
-列出已经合并到当前的分支。
+List outdated branches that have been merged into the current one.
 
-### 删除远端分支
+### Delete remote branch
 
 ```bash
 git push origin :$branchname
 ```
 
-也适用于 tags！
+Works for tags, too!
 
-### 获取当前的引用
+### Get current sha1
 
 ```bash
 git show-ref HEAD -s

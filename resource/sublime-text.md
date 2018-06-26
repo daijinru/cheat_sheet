@@ -1,45 +1,52 @@
 ---
 title: Sublime Text
 category: Apps
+layout: 2017/sheet
 ---
 
 ### Select & Expand
 
 | `⌘ D`       | select current word (repeat to include next instance of word) |
 | `⌘ L`       | select current line (repeat to include next line) |
-| `⌘ ⇧ A`    | select text inside tag (repeat to expand) |
+| `⌘ ⇧ L`     | split selection into multiple lines |
+| `⌘ ⇧ A`     | select text inside tag (repeat to expand) |
 | `Ctrl ⇧ M`  | select to curly or angle brackets (repeat to expand) |
-{:.shortcuts}
+{: .-shortcuts}
 
-_Replace ⌘ with Ctrl on Windows and Linux._
+Replace ⌘ with Ctrl on Windows and Linux.
 
 ### Code Folding
 
-| `⌘ Option [`       | fold closest block |
-| `⌘ Option ]`       | unfold closest block |
-| `⌘ K, ⌘ 1`        | fold all first level code blocks |
-| `⌘ K, ⌘ 2`        | fold all second level code blocks |
-| `⌘ K, ⌘ 3 (etc)`  | fold all third level code blocks (etc) |
-| `⌘ K, ⌘ T`        | fold all HTML attributes |
-| `⌘ K, ⌘ 0`        | unfold everything |
-{:.shortcuts}
+| `⌘ Alt [`         | fold closest block                     |
+| `⌘ Alt ]`         | unfold closest block                   |
+| `⌘ K` `⌘ 1`       | fold all first level code blocks       |
+| `⌘ K` `⌘ 2`       | fold all second level code blocks      |
+| `⌘ K` `⌘ 3 (etc)` | fold all third level code blocks (etc) |
+| `⌘ K` `⌘ T`       | fold all HTML attributes               |
+| `⌘ K` `⌘ 0`       | unfold everything                      |
+{: .-shortcuts}
 
-_Replace ⌘ with Ctrl on Windows and Linux._
+### Editing
+
+| `⌘ ⇧ D` | duplicate current line/selection |
+| `⌘ ⇧ K` | delete current line/selection |
+{: .-shortcuts}
 
 ### Goto
 
 | `⌘ P`         | goto anything |
+| `⌘ G`         | goto line number |
+| `⌘ R`         | goto symbol |
 | `⌘ P, :`      | goto line number (enter number after `:`) |
 | `⌘ P, #`      | goto and list fuzzy-matches of string (enter characters after `#`) |
 | `⌘ P, @`      | goto and list symbol (begin typing symbol name after `@`) |
-{:.shortcuts}
-
-_Replace ⌘ with Ctrl on Windows and Linux._
+{: .-shortcuts}
 
 ### Command line
-Use `subl` to open files in Sublime from the terminal.
 
 ```sh
 $ subl .
 $ subl README.md
 ```
+
+Use `subl` to open files in Sublime from the terminal.

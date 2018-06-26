@@ -4,6 +4,8 @@ category: CLI
 layout: 2017/sheet
 weight: -3
 updated: 2017-09-04
+description: |
+  $ http POST http://example.com name="John" Host:example.com — JSON, cookies, files, auth, and other httpie examples.
 intro: |
   [HTTPie](https://httpie.org/) is a command-line HTTP client.
 ---
@@ -47,7 +49,7 @@ Print options:
     --pretty=none        # all | colors | format
 ```
 
-Authentication:
+#### Authentication
 
 ```bash
     --session NAME
@@ -56,14 +58,14 @@ Authentication:
     --auth-type digest
 ```
 
-Session:
+#### Session
 
 ```bash
     --session NAME       # store auth and cookies
     --session-read-only NAME
 ```
 
-Downloading:
+#### Downloading
 
 ```bash
 -d, --download           # like wget
@@ -71,7 +73,7 @@ Downloading:
 -o, --output FILE
 ```
 
-Others:
+#### Others
 
 ```bash
 -F, --follow             # follow redirects

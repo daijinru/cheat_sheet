@@ -5,6 +5,12 @@ layout: 2017/sheet
 updated: 2017-10-12
 tags: [Featured]
 weight: -1
+keywords:
+  - shallow()
+  - mount()
+  - wrap.setProps()
+  - "wrap.find().simulate('click')"
+  - "wrap.contains(<div/>)"
 intro: |
   [Enzyme](http://airbnb.io/enzyme) lets you write unit tests for React components. This guide covers Enzyme 3.x.
 ---
@@ -135,7 +141,7 @@ wrap.find('input').simulate('change', {
 ### Initial setup
 
 ```
-npm install --save-dev enyzme \
+npm install --save-dev enzyme \
   enzyme-adapter-react-16 \
   react-test-renderer
 ```

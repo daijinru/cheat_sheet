@@ -10,6 +10,35 @@ bundle install
 env PORT=4001 yarn run dev
 ```
 
+### Windows
+
+1. Install **Ruby**: https://rubyinstaller.org/
+	* After the installation check the box and type `3` to select the 3rd option
+	* Add `C:\msys64\usr\bin` to PATH env variable 
+	* Add `C:\Ruby24-x64\bin` to PATH env variable
+2. Install **yarn**: https://yarnpkg.com/en/docs/install#windows
+3. Install **jekyll** via command prompt: `gem install jekyll bundler`
+4. Install **nodejs && npm**: https://nodejs.org/en/download/
+4. Install **webpack** via command prompt: `npm install -g webpack`
+5. If you have any issues after installing ruby, like `HOMEPATH` is not defined, then execute the below commands:
+```bash
+SETX HOMEDRIVE %SYSTEMDRIVE% -m
+SETX HOMEPATH \Users\%username% -m
+SET HOME=%SYSTEMDRIVE%\Users\%USERNAME%
+SETX HOME "%HOME%"
+```
+
+#### Start Jekyll and Webpack
+
+Go wherever the project's files are located and open a new command prompt, execute the below commands:
+
+```bash
+yarn install
+bundle install
+SET PORT=4001
+yarn run dev
+```
+
 ## CSS classes
 
 See <https://devhints.io/cheatsheet-styles> for a reference on styling.
@@ -97,3 +126,59 @@ The site devhints.io is backed by CloudFlare. Updates will take 2 days to propag
 ```bash
 ./_support/cf-purge.sh
 ```
+
+## SEO description
+
+There are multiple ways to set meta description.
+
+### keywords (and intro)
+
+Set `keywords` (and optionally `intro`). This is the easiest and the preferred
+way for now.
+
+```
+React cheatsheet - devhints.io
+------------------------------
+https://devhints.io/react ▼
+React.Component · render() · componentDidMount() · props/state · React is a
+JavaScript library for building web...
+```
+
+### description (and intro)
+
+Set `description` (and optionally `intro`)
+
+```
+React cheatsheet - devhints.io
+------------------------------
+https://devhints.io/react ▼
+One-page reference to React and its API. React is a JavaScript library for
+building web user interfaces...
+```
+
+### intro only
+
+If you left out `description` or `keywords`, a default description will be added.
+
+## Critical path CSS
+
+The critical path CSS is stored in:
+
+- `_includes/2017/critical/home.html`
+- `_includes/2017/critical/sheet.html`
+
+You'll need to update these every now and then when you change something in the CSS. Use this to update these snippets:
+
+```
+yarn run critical
+```
+
+You can temporarily disable critical path optimizations by loading it with `?nocrit=1`, eg, `https://devhints.io/?nocrit=1`.
+
+## Critical path JS
+
+There's JavaScript that's included inline in every page. It's entrypoint is:
+
+- `_js/critical.js`
+
+This is automatically compiled into the partial `_includes/2017/critical/critical.js`. Keep this bundle as small as possible.

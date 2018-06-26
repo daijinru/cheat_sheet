@@ -5,9 +5,9 @@ category: Ansible
 
 {% raw %}
 
-## 入门
+## Getting started
 
-### 主机与组
+### Hosts
 
     $ sudo mkdir /etc/ansible
     $ sudo vim /etc/ansible/hosts
@@ -16,11 +16,11 @@ category: Ansible
     192.0.2.101
     192.0.2.102
 
-### 执行 playbook
+### Running a playbook
 
     $ ansible-playbook playbook.yml
 
-## 任务
+## Tasks
 
     - hosts: all
       user: root
@@ -32,14 +32,14 @@ category: Ansible
       handlers:
         - ...
 
-### 包含
+### Includes
 
     tasks:
       - include: db.yml
     handlers:
       - include: db.yml user=timmy
 
-## 触发
+## Handlers
 
     handlers:
       - name: start apache2
@@ -51,7 +51,7 @@ category: Ansible
         notify:
           - start apache2
 
-## 变量
+## Vars
 
     - host: lol
       vars_files:
@@ -63,7 +63,7 @@ category: Ansible
           file: state=directory path=${project_root}/home/.ssh/
           only_if: "$vm == 0"
 
-## 角色
+## Roles
 
     - host: xxx
       roles:
@@ -75,7 +75,7 @@ category: Ansible
     # roles/db/tasks/*.yml
     # roles/db/handlers/*.yml
 
-### 错误处理
+### Task: Failures
 
     - name: my task
       command: ...
@@ -86,12 +86,12 @@ category: Ansible
 
       changed_when: "result.rc != 2"
 
-### 环境变量
+### Env vars
 
     vars:
       local_home: "{{ lookup('env','HOME') }}"
 
-## 引用
+## References
 
   * [Intro](http://www.ansibleworks.com/docs/intro_configuration.html)
   * [Modules](http://www.ansibleworks.com/docs/modules.html)

@@ -2,35 +2,40 @@
 title: Angular.js
 category: JavaScript libraries
 ---
+```html
+    <html ng-app="nameApp">
+```
 
-    <html ng-app="nameApp">
-
-### 列表 (ng-repeat)
-
+### Lists (ng-repeat)
+```html
     <ul ng-controller="MyListCtrl">
       <li ng-repeat="phone in phones">
         {{phone.name}}
       </li>
-    </ul>
+    </ul>
+```
 
-### 模型 (ng-model)
+### Model (ng-model)
 
+```html
     <select ng-model="orderProp">
       <option value="name">Alphabetical</option>
       <option value="age">Newest</option>
-    </select>
+    </select>
+```
 
-### 定义一个模块
-
-    App = angular.module('myApp', []);
+### Defining a module
+```js
+    App = angular.module('myApp', []);
 
     App.controller('MyListCtrl', function ($scope) {
       $scope.phones = [ ... ];
-    });
+    });
+```
 
-### 防止控制器被压缩
-
-    App.controller('Name', [
+### Controller with protection from minification
+```js
+    App.controller('Name', [
       '$scope',
       '$http',
       function ($scope, $http) {
@@ -41,45 +46,49 @@ category: JavaScript libraries
       '$scope'
       '$http'
       ($scope, $http) ->
-    ]
+    ]
+```
 
-### 服务
-
-    App.service('NameService', function($http){
+### Service
+```js
+    App.service('NameService', function($http){
       return {
         get: function(){
           return $http.get(url);
         }
       }
-    });
+    });
+```
+In controller you call with parameter and will use promises to return data from server.
 
-在控制器中携带参数进行调用，将利用promise来从服务器返回数据。
-
-    App.controller('controllerName',
+```js
+    App.controller('controllerName',
     function(NameService){
       NameService.get()
       .then(function(){})
-    })
+    })
+```
 
-### 指令
-
-    App.directive('name', function(){
+### Directive
+```js
+    App.directive('name', function(){
       return {
         template: '<h1>Hello</h1>'
       }
-    });
+    });
+```
 
-在HTML中将使用 `<name></name>` 来渲染你的模板 `<h1>Hello</h1>`
+In HTML will use `<name></name>` to render your template `<h1>Hello</h1>`
 
 ### HTTP
-
-  App.controller('PhoneListCtrl', function ($scope, $http) {
-    $http.get('/data.json').success(function (data) {
-      $scope.phones = data;
-    })
-  });
-
-参考:
+```js
+    App.controller('PhoneListCtrl', function ($scope, $http) {
+        $http.get('/data.json').success(function (data) {
+            $scope.phones = data;
+        })
+    });
+```
+References:
 
  * https://github.com/angular/angular-seed
  * https://angularjs.org/

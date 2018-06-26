@@ -6,19 +6,23 @@ ads: true
 tags: [Featured]
 updated: 2017-10-10
 weight: -10
-description: |
-  One-page reference to React's components, lifecycle hooks. Complete with practical examples and more.
+keywords:
+  - React.Component
+  - render()
+  - componentDidMount()
+  - props/state
+  - dangerouslySetInnerHTML
 intro: |
-  [React](https://reactjs.org/) 是一个用于构建用户界面（UI）的 JavaScript 库。这份指南速查表包含了 React v15 和 v16。
+  [React](https://reactjs.org/) is a JavaScript library for building user interfaces. This guide targets React v15 to v16.
 ---
 
 {%raw%}
 
-组件
+Components
 ----------
 {: .-three-column}
 
-### 组件
+### Components
 {: .-prime}
 
 ```jsx
@@ -44,7 +48,7 @@ ReactDOM.render(<Hello name='John' />, el)
 
 Use the [React.js jsfiddle](http://jsfiddle.net/reactjs/69z2wepo/) to start hacking. (or the unofficial [jsbin](http://jsbin.com/yafixat/edit?js,output))
 
-### 属性
+### Properties
 
 ```html
 <Video fullscreen={true} />
@@ -59,11 +63,18 @@ render () {
 ```
 {: data-line="2"}
 
-使用 `this.props` 访问从组件传入的属性。
+Use `this.props` to access properties passed to the component.
 
-参考: [Properties](https://reactjs.org/docs/tutorial.html#using-props)
+See: [Properties](https://reactjs.org/docs/tutorial.html#using-props)
 
-### 状态
+### States
+
+```jsx
+constructor(props) {
+  super(props)
+  this.state = {}
+}
+```
 
 ```jsx
 this.setState({ username: 'rstacruz' })
@@ -77,9 +88,9 @@ render () {
 ```
 {: data-line="2"}
 
-使用状态 (`this.state`) 管理动态数据。
+Use states (`this.state`) to manage dynamic data.
 
-参考: [States](https://reactjs.org/docs/tutorial.html#reactive-state)
+See: [States](https://reactjs.org/docs/tutorial.html#reactive-state)
 
 ### Nesting
 
@@ -95,11 +106,29 @@ class Info extends React.Component {
   }
 }
 ```
-{: data-line="6,7"}
+As of React v16.2.0, fragments can be used to return multiple children without adding extra wrapping nodes to the DOM.
+
+```jsx
+class Info extends React.Component {
+  render () {
+    const { avatar, username } = this.props
+
+    return (
+      <React.Fragment>
+        <UserAvatar src={avatar} />
+        <UserProfile username={username} />
+      </React.Fragment>
+    )
+  }
+}
+```
+
+
+{: data-line="5,6,7,8,9,10"}
 
 Nest components to separate concerns.
 
-参考: [Composing Components](https://reactjs.org/docs/components-and-props.html#composing-components)
+See: [Composing Components](https://reactjs.org/docs/components-and-props.html#composing-components)
 
 ### Children
 
@@ -200,7 +229,7 @@ this.state
 this.props
 ```
 
-These methods and properies are available for `Component` instances.
+These methods and properties are available for `Component` instances.
 
 See: [Component API](http://facebook.github.io/react/docs/component-api.html)
 
@@ -274,7 +303,7 @@ class MyComponent extends React.Component {
   }
 
   onChange (event) {
-    this.setState({ value: event.target.vlaue })
+    this.setState({ value: event.target.value })
   }
 }
 ```
@@ -286,7 +315,7 @@ See: [Events](https://reactjs.org/docs/events.html)
 
 ## Other features
 
-### Transfering props
+### Transferring props
 
 ```html
 <VideoPlayer src="video.mp4" />
@@ -375,9 +404,17 @@ Always supply a `key` property.
 
 ```jsx
 <div>
-  {showPopup
-    ? <Popup />
-    : null}
+  {showMyComponent
+    ? <MyComponent />
+    : <OtherComponent />}
+</div>
+```
+
+### Short-circuit evaluation
+
+```jsx
+<div>
+  {showPopup && <Popup />}
 </div>
 ```
 
@@ -385,7 +422,11 @@ New features
 ------------
 {: .-three-column}
 
-### Returning fragments
+### Returning multiple elements
+
+You can return multiple elements as arrays or fragments.
+
+#### Arrays
 
 ```js
 render () {
@@ -398,7 +439,32 @@ render () {
 ```
 {: data-line="3,4,5,6"}
 
-You can return multiple nodes as arrays.
+#### Fragments
+```js
+render () {
+  // Fragments don't require keys!
+  return (
+    <React.Fragment>
+      <li>First item</li>
+      <li>Second item</li>
+    </React.Fragment>
+  )
+}
+```
+{: data-line="3,4,5,6,7,8"}
+
+See: [Fragments and strings](https://reactjs.org/blog/2017/09/26/react-v16.0.html#new-render-return-types-fragments-and-strings)
+
+### Returning strings
+
+```js
+render() {
+  return 'Look ma, no spans!';
+}
+```
+{: data-line="2"}
+
+You can return just a string.
 
 See: [Fragments and strings](https://reactjs.org/blog/2017/09/26/react-v16.0.html#new-render-return-types-fragments-and-strings)
 

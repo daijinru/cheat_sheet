@@ -8,19 +8,19 @@ npm i -g browser-sync
 ```
 {:.terminal}
 
-### 启动服务器
+### Start a server
 
 ```sh
 browser-sync start --server <path> --files='**/*.html, **/*.css'
 ```
 
-### 选项
+### Options
 
 ```sh
   --port=N
   --proxy="http://127.0.0.1:3000"
 ```
 
-### 参考
+### Reference
 
 * [browsersync.io](http://browsersync.io)

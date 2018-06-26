@@ -1,13 +1,15 @@
 # Devhints
 
-> TL;DR 速查表 - 为开发者准备的速查表 cheatsheets
+> TL;DR for developer documentation - a ridiculous collection of cheatsheets
+
+[![Status](https://travis-ci.org/rstacruz/cheatsheets.svg?branch=master)](https://travis-ci.org/rstacruz/cheatsheets "See test builds")
 
 <br>
 
 <p align='center'>
-<a href='https://devhints.io'><img src='_docs/images/screenshot.png' width=600></a>
+<a href='https://devhints.io/'><img src='_docs/images/screenshot.png' width=600></a>
 <br>
-✨ <b><a href='https://devhints.io'>devhints.io</a></b> ✨
+✨ <b><a href='https://devhints.io/'>devhints.io</a></b> ✨
 </p>
 
 <br>
